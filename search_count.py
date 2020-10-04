@@ -24,7 +24,7 @@ browser = webdriver.Chrome(chromedriver, chrome_options=chrome_options)
 
 pd.set_option("display.max_rows", 1000)
 pd.set_option("display.max_columns", 1000)
-df = pd.read_csv(r"C:\Users\Toy\Desktop\Python\aoi\search_count\csuser__csuser__eam2__search3_1601343261_38661.csv")
+df = pd.read_csv(r"C:\Users\search_count\csuser__csuser__eam2__search3_1601343261_38661.csv")
 filters = []
 net_10 = ipaddress.ip_network('10.0.0.0/8').hosts()
 net_172 = ipaddress.ip_network('172.16.0.0/12').hosts()
@@ -45,7 +45,7 @@ def user(username):
     cg = df.User_Name.values
     num_genres = pd.DataFrame(np.array(cg).reshape(username, 1))
     a = str(pd.value_counts(num_genres[0]))
-    f = open(r"C:\Users\Toy\Desktop\Python\aoi\search_count\user_" + time.strftime('%Y_%m_%d') + ".txt", "w", encoding="utf-8")
+    f = open(r"C:\Users\search_count\user_" + time.strftime('%Y_%m_%d') + ".txt", "w", encoding="utf-8")
     f.write(a)
     f.close()
 
@@ -53,14 +53,14 @@ def host(hostname):
     cg = df.Host_Name.values
     num_genres = pd.DataFrame(np.array(cg).reshape(hostname, 1))
     a = str(pd.value_counts(num_genres[0]))
-    f = open(r"C:\Users\Toy\Desktop\Python\aoi\search_count\host_" + time.strftime('%Y_%m_%d') + ".txt", "w", encoding="utf-8")
+    f = open(r"C:\Users\search_count\host_" + time.strftime('%Y_%m_%d') + ".txt", "w", encoding="utf-8")
     f.write(a)
     f.close()
 
 def remote_ip():
     df_new = df[df['Remote_Source_IP'].notnull()]
     mydata = list(df_new.iloc[:, 5])
-    f = open(r"C:\Users\Toy\Desktop\Python\aoi\search_count\ip.txt", "w", encoding="utf-8")
+    f = open(r"C:\Users\search_count\ip.txt", "w", encoding="utf-8")
     for ip in mydata:
         t = ip.split()
         #s = t.split("[")[1].split("]")[0]
@@ -80,12 +80,12 @@ def remote_ip():
                     text = message.get_attribute('detections-string')
                     if text != "No interesting sightings for this IP address":
                         print(t[i])
-                        l = open("C:\\Users\\Toy\\Desktop\\Python\\aoi\\search_count\\remoteip_" + time.strftime('%Y_%m_%d') + ".txt", "a", encoding="utf-8")
+                        l = open("C:\\Users\\remoteip_" + time.strftime('%Y_%m_%d') + ".txt", "a", encoding="utf-8")
                         l.write(t[i] + "：trouble\n")
                         l.close()
                     else:
                         print("YA~")
-                        l = open("C:\\Users\\Toy\\Desktop\\Python\\aoi\\search_count\\remoteip_" + time.strftime('%Y_%m_%d') + ".txt", "a", encoding="utf-8")
+                        l = open("C:\\Users\\remoteip_" + time.strftime('%Y_%m_%d') + ".txt", "a", encoding="utf-8")
                         l.write(t[i] + "：No problem\n")
                         l.close()
     f.close()
